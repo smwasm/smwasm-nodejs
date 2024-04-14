@@ -304,25 +304,19 @@ class SmWasm {
             wasm_load_table[one_path] = new WasmLoad(one_path, wasm_paths[one_path]);
 
             if (one_path.startsWith('https:')) {
-                https.get(one_path, (resp) => {
-                    let data = '';
+                const url = new URL(one_path);
+                const options = {
+                    hostname: url.hostname,
+                    port: url.port,
+                    path: url.pathname,
+                    method: 'GET',
+                    rejectUnauthorized: false
+                };
 
-                    resp.on('data', (chunk) => {
-                        data += chunk;
-                    });
-
-                    resp.on('end', () => {
-                        _set_info(one_path, 'size', data.length)
-                        WebAssembly.compile(data).then(module => {
-                            _use_module(module, one_path);
-                        })
-                            .catch(err => {
-                                console.error('Error processing wasm file:', err);
-                            });
-                    });
-
+                https.get(options, (resp) => {
+                    _on_http_get(resp, one_path)
                 }).on("error", (err) => {
-                    console.log("--- https get error ---", err);
+                    _set_info(one_path, 'error', err)
                     _set_info(one_path, 'status', 1)
                 });
             } else if (one_path.startsWith('http:')) {
