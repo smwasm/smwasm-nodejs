@@ -1,0 +1,21 @@
+{
+  "name": "smwasm",
+  "version": "0.1.0",
+  "description": "SmartModule & WebAssembly Library",
+  "main": "smwasm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smwasm/smwasm-nodejs"
+  },
+  "keywords": [
+    "node",
+    "library",
+    "my-awesome-library"
+  ],
+  "author": "Your Name",
+  "license": "Apache-2.0",
+  "homepage": "https://smwasm.com"
+}
