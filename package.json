@@ -1,6 +1,6 @@
 {
   "name": "smwasm",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "SmartModule & WebAssembly Library",
   "main": "smwasm.js",
   "scripts": {
