@@ -445,7 +445,13 @@ class Smh {
     }
 
     call(ask) {
-        return util.call(ask, false)
+        try {
+            return util.call(ask, false)
+        } catch (err) {
+            const txt = err instanceof Error?
+                `${err.message}\n${err.stack}` : String(err);
+            return {'$panic': txt}
+        }
     }
 
     info() {
